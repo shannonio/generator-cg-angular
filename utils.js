@@ -8,7 +8,7 @@ var ngParseModule = require('ng-parse-module');
 
 
 exports.JS_MARKER = "<!-- Add New Component JS Above -->";
-exports.LESS_MARKER = "/* Add Component LESS Above */";
+exports.SASS_MARKER = "/* Add Component SCSS Above */";
 
 exports.ROUTE_MARKER = "/* Add New Routes Above */";
 exports.STATE_MARKER = "/* Add New States Above */";
@@ -51,7 +51,7 @@ exports.processTemplates = function(name,dir,type,that,defaultDir,configName,mod
             var templateFile = path.join(templateDirectory,template);
             //create the file
             that.template(templateFile,path.join(dir,customTemplateName));
-            //inject the file reference into index.html/app.less/etc as appropriate
+            //inject the file reference into index.html/app.scss/etc as appropriate
             exports.inject(path.join(dir,customTemplateName),that,module);
         });
 };

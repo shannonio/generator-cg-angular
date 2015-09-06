@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var cgUtils = require('../utils.js');
 
-var CgangularGenerator = module.exports = function CgangularGenerator(args, options, config) {
+var SbAngularGenerator = module.exports = function SbAngularGenerator(args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {
@@ -19,13 +19,14 @@ var CgangularGenerator = module.exports = function CgangularGenerator(args, opti
                 marker: cgUtils.JS_MARKER,
                 template: '<script src="<%= filename %>"></script>'
             },
-            less: {
+            scss: {
                 relativeToModule: true,
-                file: '<%= module %>.less',
-                marker: cgUtils.LESS_MARKER,
+                file: 'app.scss',
+                marker: cgUtils.SASS_MARKER,
                 template: '@import "<%= filename %>";'
             }
         };
+        console.log('HELLOOOOOOOO');
         this.config.set('inject',inject);
         this.config.save();
         this.installDependencies({ skipInstall: options['skip-install'] });
@@ -34,9 +35,9 @@ var CgangularGenerator = module.exports = function CgangularGenerator(args, opti
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(CgangularGenerator, yeoman.generators.Base);
+util.inherits(SbAngularGenerator, yeoman.generators.Base);
 
-CgangularGenerator.prototype.askFor = function askFor() {
+SbAngularGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
     var prompts = [{
@@ -51,7 +52,7 @@ CgangularGenerator.prototype.askFor = function askFor() {
     }.bind(this));
 };
 
-CgangularGenerator.prototype.askForUiRouter = function askFor() {
+SbAngularGenerator.prototype.askForUiRouter = function askFor() {
     var cb = this.async();
 
     var prompts = [{
@@ -79,6 +80,6 @@ CgangularGenerator.prototype.askForUiRouter = function askFor() {
     }.bind(this));
 };
 
-CgangularGenerator.prototype.app = function app() {
+SbAngularGenerator.prototype.app = function app() {
     this.directory('skeleton/','./');
 };
