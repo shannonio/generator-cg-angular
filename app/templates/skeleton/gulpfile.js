@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     stylish = require('jshint-stylish');
 
 var MAIN_STYLE_SRC = 'app.scss';
-var BASE_SRC = 'src/**/';
+var BASE_SRC = '**/';
 
 var JS_SRC = BASE_SRC + '*.js';
 var STYLE_SRC = [MAIN_STYLE_SRC, BASE_SRC + '*.scss'];
