@@ -2,14 +2,15 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     karma = require('karma').server,
-    stylish = require('jshint-stylish');
+    stylish = require('jshint-stylish'),
+    connect = require('gulp-connect'),
+    sass = require('gulp-sass');
 
 var MAIN_STYLE_SRC = 'app.scss';
-var BASE_SRC = '**/';
 
-var JS_SRC = BASE_SRC + '*.js';
-var STYLE_SRC = [MAIN_STYLE_SRC, BASE_SRC + '*.scss'];
-var TMPL_SRC = BASE_SRC + '*.html';
+var JS_SRC = ['partial/**/*.js', 'directive/**/*.js', 'service/**/*.js', 'filter/**/*.js'];
+var STYLE_SRC = [MAIN_STYLE_SRC, 'partial/**/*.scss', 'directive/**/*.scss'];
+var TMPL_SRC = ['partial/**/*.html', 'directive/**/*.html', 'service/**/*.html', 'filter/**/*.html'];
 
 /**
  * Run test once and exit
@@ -38,13 +39,31 @@ gulp.task('testdebug', function (done) {
 
 gulp.task('jshint', ['test'], function() {
   return gulp.src(JS_SRC)
-    .pipe(jshint('../.jshintrc'))
+    .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(TMPL_SRC, ['test', 'jshint']);
-  gulp.watch(JS_SRC, ['test', 'jshint']);
+gulp.task('serve', function() {
+  connect.server({
+    livereload: true
+  });
 });
 
-gulp.task('default', ['test', 'jshint', 'watch']);
+gulp.task('html', function () {
+  gulp.src(TMPL_SRC)
+    .pipe(connect.reload());
+});
+
+gulp.task('sass', function () {
+  gulp.src(MAIN_STYLE_SRC)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./css'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(TMPL_SRC, ['test', 'jshint', 'html']);
+  gulp.watch(STYLE_SRC, ['test', 'sass', 'html']);
+  gulp.watch(JS_SRC, ['test', 'jshint', 'html']);
+});
+
+gulp.task('default', ['test', 'jshint', 'serve', 'watch']);

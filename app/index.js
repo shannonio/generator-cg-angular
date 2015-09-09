@@ -26,7 +26,6 @@ var SbAngularGenerator = module.exports = function SbAngularGenerator(args, opti
                 template: '@import "<%= filename %>";'
             }
         };
-        console.log('HELLOOOOOOOO');
         this.config.set('inject',inject);
         this.config.save();
         this.installDependencies({ skipInstall: options['skip-install'] });

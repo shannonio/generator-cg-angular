@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.camelize(appname) %>",
+  "name": "genTest",
   "version": "0.0.0",
   "devDependencies": {
     "connect-livereload": "^0.4.0",
@@ -19,9 +19,10 @@
     "gulp-ng-html2js": "~0.1.6",
     "gulp-ng-templates": "0.0.5",
     "gulp-rename": "1.2.0",
-    "gulp-sass": "^1.1.0",
+    "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.2.11",
     "gulp-uglify": "~0.2.1",
+    "gulp-webserver": "^0.9.1",
     "istanbul": "0.3.5",
     "jshint-stylish": "~0.1.5",
     "karma": "0.12.31",

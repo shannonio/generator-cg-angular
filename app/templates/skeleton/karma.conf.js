@@ -12,28 +12,30 @@ module.exports = function(config) {
     files: [
       // bower dist dependencies
       'bower_components/angular/angular.js',
+      'bower_components/angular-ui-event/src/event.js',
+      'bower_components/angular-ui-indeterminate/src/indeterminate.js',
+      'bower_components/angular-ui-mask/src/mask.js',
+      'bower_components/angular-ui-scroll/dist/ui-scroll.js',
+      'bower_components/angular-ui-scrollpoint/src/scrollpoint.js',
+      'bower_components/angular-ui-uploader/src/uploader.js',
+      'bower_components/angular-ui-validate/src/validate.js',
+      'bower_components/angular-ui-utils/index.js',
 
       //Spec Helpers
-      // 'spec-helpers/spec-helper-main.js',
-      // 'spec-helpers/**.js',
 
       // bower test dependencies
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-mocks/angular-mocks.js',
 
       // your implementation files
-      // 'animation-and-style-helpers.js',
       'app.js',
-      // 'partial/**/*.js',
-      // 'partial/**/*.html',
-      // 'directive/**/*.js'
-      // 'directive/**/*.html'
-      // 'service/**/*.js'
-      // 'filter/**/*.js'
+      'partial/**/*.js',
+      'partial/**/*.html'
+
     ],
 
     ngHtml2JsPreprocessor: {
-      moduleName: '<%= _.camelize(appname) %>',
+      moduleName: 'genTest',
       // or define a custom transform function
       //      cacheIdFromPath: function(filepath) {
       //        console.error("=============>", filepath);
